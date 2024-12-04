@@ -3,33 +3,39 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: TextField(
-          decoration: InputDecoration(
-            hintText: '삼성동',
-            contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(
-                color: Colors.grey,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: TextField(
+            decoration: InputDecoration(
+              hintText: '삼성동',
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 15, horizontal: 13),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Colors.grey,
+                ),
               ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: const BorderSide(color: Colors.black),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(color: Colors.black),
+              ),
             ),
           ),
         ),
-      ),
-      body: Expanded(
-        child: ListView.separated(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          separatorBuilder: (context, index) => SizedBox(height: 20),
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return item();
-          },
+        body: Expanded(
+          child: ListView.separated(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            separatorBuilder: (context, index) => SizedBox(height: 20),
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return item();
+            },
+          ),
         ),
       ),
     );
