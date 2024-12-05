@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map_search_app/ui/pages/home/home_view_model.dart';
+import 'package:flutter_map_search_app/ui/pages/home/widgets/Location_item.dart';
+import 'package:flutter_map_search_app/ui/pages/home_detail/home_detail_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -7,11 +11,17 @@ class HomePage extends StatelessWidget {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: TextField(
+      child: Scaffold(appBar: AppBar(
+        title: Consumer(builder: (context, ref, child) {
+          return TextField(
+            onSubmitted: (value) {
+              if (value.trim().isNotEmpty) {
+                final viewModel = ref.read(homeViewModel.notifier);
+                viewModel.searchMap(value);
+              }
+            },
             decoration: InputDecoration(
-              hintText: '삼성동',
+              hintText: '입력해주세요',
               contentPadding:
                   EdgeInsets.symmetric(vertical: 15, horizontal: 13),
               enabledBorder: OutlineInputBorder(
@@ -25,43 +35,31 @@ class HomePage extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.black),
               ),
             ),
-          ),
-        ),
-        body: Expanded(
-          child: ListView.separated(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            separatorBuilder: (context, index) => SizedBox(height: 20),
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return item();
-            },
-          ),
-        ),
-      ),
-    );
-  }
+          );
+        }),
+      ), body: Consumer(builder: (context, ref, child) {
+        final addresses = ref.watch(homeViewModel);
+        return ListView.separated(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          separatorBuilder: (context, index) => SizedBox(height: 20),
+          itemCount: addresses.length,
+          itemBuilder: (BuildContext context, int index) {
+            final data = addresses[index];
+            return GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    String? validLink = data.link.length >= 5 &&
+                            data.link.substring(0, 5) == "https"
+                        ? data.link
+                        : null;
 
-  Container item() {
-    return Container(
-      padding: EdgeInsets.all(20),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '삼성 1동 주민센터',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          Text('공공,사회기관>행정복지센터'),
-          Text('서울특별시 강남구 봉은사로 616 삼성1동 주민센터'),
-        ],
-      ),
+                    return HomeDetailPage(validLink);
+                  }));
+                },
+                child: item(data));
+          },
+        );
+      })),
     );
   }
 }
