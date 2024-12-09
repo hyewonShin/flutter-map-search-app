@@ -1,5 +1,7 @@
 # flutter_map_search_app
 
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/de764387-988e-4d93-823c-9a04b7cd3271)
+
 A new Flutter project.
 
 ## Getting Started
