@@ -3,7 +3,7 @@
 <br/><br/><br/>
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/de764387-988e-4d93-823c-9a04b7cd3271" alt="기차 예매 서비스 예시 1" style="width: 80%; margin-bottom: 20px;" />
+  <img src="https://github.com/user-attachments/assets/e4393037-80c7-4a69-a867-1ffc45b3b4d6" alt="기차 예매 서비스 예시 1" style="width: 80%; margin-bottom: 20px;" />
 </div>
 
 <br/><br/>
