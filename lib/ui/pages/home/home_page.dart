@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map_search_app/core/geolocator_helper.dart';
+import 'package:flutter_map_search_app/ui/pages/home/vworld_view_model.dart';
 import 'package:flutter_map_search_app/ui/pages/home/home_view_model.dart';
 import 'package:flutter_map_search_app/ui/pages/home/widgets/Location_item.dart';
 import 'package:flutter_map_search_app/ui/pages/home_detail/home_detail_page.dart';
@@ -12,13 +14,14 @@ class HomePage extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+          // backgroundColor: Colors.white,
           appBar: AppBar(
             title: Consumer(builder: (context, ref, child) {
               return TextField(
                 onSubmitted: (value) {
                   if (value.trim().isNotEmpty) {
-                    final viewModel = ref.read(homeViewModel.notifier);
-                    viewModel.searchMap(value);
+                    final naverViewModel = ref.read(homeViewModel.notifier);
+                    naverViewModel.searchMap(value);
                   }
                 },
                 decoration: InputDecoration(
@@ -39,17 +42,40 @@ class HomePage extends StatelessWidget {
               );
             }),
             actions: [
-              GestureDetector(
-                onTap: () {
-                  print('위경도 아이콘 클릭');
-                },
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.transparent,
-                  child: Icon(Icons.gps_fixed),
-                ),
-              )
+              Consumer(builder: (context, ref, child) {
+                final viewModel = ref.read(vworldViewModel.notifier);
+                ref.watch(vworldViewModel);
+                final naverViewModel = ref.read(homeViewModel.notifier);
+
+                return GestureDetector(
+                  onTap: () async {
+                    // 현재 위치 얻기
+                    final position = await GeolocatorHelper.getPosition();
+
+                    if (position != null) {
+                      // vworld로 위경도로 주소 찾기
+                      await viewModel.searchByLocation(
+                        position.latitude,
+                        position.longitude,
+                      );
+
+                      // Notifier가 관리하는 state(상태) 값을 읽어오기
+                      final vworldResult = ref.read(vworldViewModel);
+
+                      if (vworldResult.isNotEmpty) {
+                        // 주소 결과를 사용하여 naverViewModel.searchMap 호출
+                        naverViewModel.searchMap(vworldResult.toString());
+                      }
+                    }
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    color: Colors.transparent,
+                    child: Icon(Icons.gps_fixed),
+                  ),
+                );
+              }),
             ],
           ),
           body: Consumer(builder: (context, ref, child) {
@@ -68,8 +94,12 @@ class HomePage extends StatelessWidget {
                                 data.link.substring(0, 5) == "https"
                             ? data.link
                             : null;
-
-                        return HomeDetailPage(validLink);
+                        return HomeDetailPage(
+                          link: validLink,
+                          title: data.title,
+                          lat: data.lat,
+                          lon: data.lon,
+                        );
                       }));
                     },
                     child: item(data));
