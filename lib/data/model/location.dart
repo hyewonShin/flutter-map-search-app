@@ -15,12 +15,16 @@ class Location {
   String category;
   String roadAddress;
   String link;
+  double lat;
+  double lon;
 
   Location({
     required this.title,
     required this.category,
     required this.roadAddress,
     required this.link,
+    required this.lat,
+    required this.lon,
   });
 
   Location.fromJson(Map<String, dynamic> map)
@@ -29,6 +33,8 @@ class Location {
           category: map['category'],
           roadAddress: map['roadAddress'],
           link: map['link'],
+          lat: double.parse(map['mapy']) / 10000000,
+          lon: double.parse(map['mapx']) / 10000000,
         );
 
   Map<String, dynamic> toJson() {
@@ -37,6 +43,8 @@ class Location {
       'category': category,
       'roadAddress': roadAddress,
       'link': link,
+      'lat': lat,
+      'lon': lon,
     };
   }
 }
