@@ -14,29 +14,31 @@ class HomePage extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-          // backgroundColor: Colors.white,
           appBar: AppBar(
             title: Consumer(builder: (context, ref, child) {
-              return TextField(
-                onSubmitted: (value) {
-                  if (value.trim().isNotEmpty) {
-                    final naverViewModel = ref.read(homeViewModel.notifier);
-                    naverViewModel.searchMap(value);
-                  }
-                },
-                decoration: InputDecoration(
-                  hintText: '입력해주세요',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 15, horizontal: 13),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(
-                      color: Colors.grey,
+              return Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: TextField(
+                  onSubmitted: (value) {
+                    if (value.trim().isNotEmpty) {
+                      final naverViewModel = ref.read(homeViewModel.notifier);
+                      naverViewModel.searchMap(value);
+                    }
+                  },
+                  decoration: InputDecoration(
+                    hintText: '입력해주세요',
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 15, horizontal: 13),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(color: Colors.black),
+                    ),
                   ),
                 ),
               );
@@ -68,11 +70,14 @@ class HomePage extends StatelessWidget {
                       }
                     }
                   },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    color: Colors.transparent,
-                    child: Icon(Icons.gps_fixed),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.transparent,
+                      child: Icon(Icons.gps_fixed),
+                    ),
                   ),
                 );
               }),
