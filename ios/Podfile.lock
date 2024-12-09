@@ -7,14 +7,30 @@ PODS:
   - flutter_inappwebview_ios/Core (0.0.1):
     - Flutter
     - OrderedSet (~> 6.0.3)
+  - flutter_naver_map (1.3.0):
+    - Flutter
+    - NMapsMap (= 3.19.0)
+  - geolocator_apple (1.2.0):
+    - Flutter
+  - NMapsGeometry (1.0.2)
+  - NMapsMap (3.19.0):
+    - NMapsGeometry
   - OrderedSet (6.0.3)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
+  - flutter_naver_map (from `.symlinks/plugins/flutter_naver_map/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
 
 SPEC REPOS:
   trunk:
+    - NMapsGeometry
+    - NMapsMap
     - OrderedSet
 
 EXTERNAL SOURCES:
@@ -22,11 +38,22 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_inappwebview_ios:
     :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
+  flutter_naver_map:
+    :path: ".symlinks/plugins/flutter_naver_map/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_inappwebview_ios: 6f63631e2c62a7c350263b13fa5427aedefe81d4
+  flutter_naver_map: d31b1884517151e7b3121e3b24c18733ef4e4387
+  geolocator_apple: 9bcea1918ff7f0062d98345d238ae12718acfbc1
+  NMapsGeometry: 4e02554fa9880ef02ed96b075dc84355d6352479
+  NMapsMap: 99c10429d93340780b6f88d3fc7c0a3850b43664
   OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
