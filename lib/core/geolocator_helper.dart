@@ -6,7 +6,7 @@ class GeolocatorHelper {
         permission == LocationPermission.deniedForever;
   }
 
-  static Future<Position?> getPositon() async {
+  static Future<Position?> getPosition() async {
     final permission = await Geolocator.checkPermission();
     if (_idDenied(permission)) {
       final request = await Geolocator.requestPermission();
