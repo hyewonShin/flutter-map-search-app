@@ -13,8 +13,23 @@
 <br/><br/>
 
 
-# 개발환경
-Flutter SDK: ^3.5.4
+# 기술 스택
+- Framework: Flutter(SDK: ^3.5.4)
+- Language: Dart
+- State Management: Riverpod
+- 사용 라이브러리
+
+# 사용 라이브러리 
+- flutter_riverpod
+  - Flutter 앱에서 위젯의 상태 관리   
+- flutter_inappwebview
+  - Flutter 앱에서 In-App WebView 사용
+- dio
+  - HTTP 클라이언트 라이브러리 
+- geolocator
+  - 위치 기반 기능을 제공하는 라이브러리 
+
+
 <br/><br/>
 
 
