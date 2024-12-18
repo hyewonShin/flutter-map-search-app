@@ -12,24 +12,24 @@
 2024.12.04~2024.12.09
 <br/><br/>
 
-
 # 기술 스택
 - Framework: Flutter(SDK: ^3.5.4)
 - Language: Dart
 - State Management: Riverpod
-- 사용 라이브러리
+<br/><br/>
 
 # 사용 라이브러리 
 - flutter_riverpod
-  - Flutter 앱에서 위젯의 상태 관리   
+  - Flutter 앱에서 위젯의 상태 관리를 담당하는 라이브러리.
+  - 선언적이고 테스트 가능한 상태 관리 방식 제공.   
 - flutter_inappwebview
-  - Flutter 앱에서 In-App WebView 사용
+  - Flutter 앱에서 In-App WebView를 사용하도록 지원하는 라이브러리.
 - dio
-  - HTTP 클라이언트 라이브러리 
+  - Flutter 앱에서 사용되는 HTTP 클라이언트 라이브러리.
+  - REST API 통신, 요청 헤더 관리, JSON 직렬화 등 네트워킹 기능 제공.
 - geolocator
-  - 위치 기반 기능을 제공하는 라이브러리 
-
-
+  - Flutter 앱에 위치 기반 기능을 제공하는 라이브러리.
+  - 현재 위치 추적, 거리 계산, GPS 기반 기능 구현 가능.
 <br/><br/>
 
 
