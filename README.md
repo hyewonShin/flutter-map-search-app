@@ -33,11 +33,6 @@
 <br/><br/>
 
 
-# 실행방법
-flutter run
-<br/><br/>
-
-
 # 주요기능
 ### 필수
 - Riverpod 라이브러리로 MVVM 아키텍처 적용
